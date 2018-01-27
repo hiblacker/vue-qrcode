@@ -10,7 +10,15 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import(/* webpackChunkName: 'same' */'page/index')
+      component: () => import(/* webpackChunkName: 'same' */'page/index'),
+      children: [
+        {
+          path: '/g',
+          name: 'g',
+          component: () => import(/* webpackChunkName: 'same' */'page/g')
+        }
+      ]
     }
+
   ]
 })

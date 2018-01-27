@@ -18,8 +18,9 @@
   @gold: #c3a877;
   @red:#e64340;
   @blue:#1aa1e6;
+  @green:#2ba245;
   @img: '../assets/';
-  @r:58.59rem;
+  @r:20rem;
   .f(@size:14;@color:#666;@line-height:1.5){
     font-size:@size/@r;
     line-height: @line-height;
@@ -46,60 +47,6 @@
   }
   .wrapper{
     overflow: hidden;
-  }
-  // cell
-  .bl_cell {
-    padding: .289rem .34rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    background: #fff;
-    color: #666;
-    font-size: 14/@r;
-    .bl_cell_icon img {
-      display: block;
-      width: 0.31rem;
-      margin-right: 0.26rem;
-    }
-    .bl_cell_name {
-      flex: 1;
-      text-align: left;
-    }
-    .bl_cell_rightarr {
-      text-align: right;
-      color: #999;
-      position: relative;
-      &:after {
-        content: " ";
-        display: inline-block;
-        height: 6px;
-        width: 6px;
-        border-width: 2px 2px 0 0;
-        border-color: #c8c8cd;
-        border-style: solid;
-        -webkit-transform: matrix(.71, .71, -.71, .71, 0, 0);
-        transform: matrix(.71, .71, -.71, .71, 0, 0);
-        position: absolute;
-        top: 50%;
-        margin-top: -4px;
-        right: 2px;
-      }
-    }
-    &.cell_border_t:before {
-      content: " ";
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 1px;
-      border-top: 1px solid #e5e5e5;
-      color: #e5e5e5;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-transform: scaleY(.5);
-      transform: scaleY(.5);
-      left: 15px;
-      z-index: 2;
-    }
   }
   
   // top_bar
@@ -143,121 +90,21 @@
       outline: 0;
     }
   }
-  // 边线左侧留白输入框
-  .input.line {
-    border: 0;
-    position: relative;
-    width: 100%;
-    height: 44/@r;
-    line-height: 44/@r;
-    .f(14);
-    &:after{
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 15/@r;
-      right: 0;
-      height: 1px;
-      background: #f5f5f5;
-    }
-    input{
-      height: 44/@r;
-      padding-left: 15/@r;
-    }
-  }
-  
-  .input-border {
-    width: 4.69rem;
-    margin: .26rem auto 0;
-    border: 1px solid #dcdcdc;
-    border-radius: 6px;
-    &.eye {
-      display: flex;
-      input {
-        width: 90%;
-      }
-    }
-    &.code {
-      border: 0;
-      display: flex;
-      align-items: center;
-      div {
-        flex: 2;
-        border: 1px solid #dcdcdc;
-        border-radius: 6px;
-        margin-right: .17rem;
-      }
-      span {
-        flex: 1;
-        height: .68rem;
-        line-height: .68rem;
-        font-size: .24rem;
-        background: #c2a877;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-      }
-    }
-    input {
-      border: 0;
-      outline: 0;
-      width: 100%;
-      padding-left: .17rem;
-      height: .68rem;
-      font-size: .2rem;
-      background: none;
-    }
-  }
-  
-  //表单input
-  .form_input{
-    border: 1px solid #e9e9e9;
-    border-radius:4/@r;
-    input{
-      border: 0;
-      outline: 0;
-      background: none;
-      width: 100%;
-      height:36/@r;
-      line-height: 36/@r;
-      font-size: 14/@r;
-      padding-left: 8/@r;
-  
-    }
-    &.code{
-      display: flex;
-      input{
-        flex: 5 ;
-      }
-      i{
-        flex: 2;
-        display: inline-flex;
-        right: 0;
-        background: @gold;
-        color: #fff;
-        justify-content: center;
-        align-items: center;
-        border-radius:4/@r;
-      }
-    }
-  }
+
   
   //btn
   .btn {
-    width: 4.37rem;
-    height: .68rem;
-    font-size: .24rem;
-    margin: .68rem auto .15rem;
-    background: #e0d3bb;
-    line-height: .68rem;
+    height: 2rem;
+    margin: 1rem;
+    background:@green;
     border-radius: .34rem;
     transition: .3s;
+    .f(20,#fff,2rem);
     text-align: center;
-    color: #fff;
     display: block;
     a {
       color: #fff;
-      font-size: .24rem;
+      font-size: 26/@r;
     }
   }
   //btn_normal
@@ -304,12 +151,12 @@
     position: relative;
     top: -3px;
   }
-  .router-show-enter-active,
-  .router-show-leave-active {
+  .slide-enter-active,
+  .slide-leave-active {
     transition: all 0.4s;
   }
-  .router-show-enter,
-  .router-show-leave-active {
+  .slide-enter,
+  .slide-leave-active {
     transform: translateX(100%);
   }
   
