@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="js/require.js"></script>
+    <script>
+        var __awesome_qr_base_path = "js";
+        
+        var $ = function(el){
+            if(el.indexOf('#')!==-1){
+                console.log(el.slice(1))
+            }
+        }
+        // require awesome-qr.js
+        function g(src, info) {
+            if(!info) return
+            if (!src) {
+                require([__awesome_qr_base_path + '/awesome-qr'], function (AwesomeQR) {
+                    AwesomeQR.create({
+                        text: info,
+                        size: 800,
+                        margin: 20,
+                        bindElement: 'qrcode',
+                        callback:function(){
+                            var save = document.getElementById('save')
+                            var src2 = document.getElementById('qrcode').getAttribute('src')
+                            console.log(src2)
+                            save.setAttribute('href',src2)
+                        }
+                    });
+                });
+                return
+            }
+            require([__awesome_qr_base_path + '/awesome-qr'], function (AwesomeQR) {
+                var img = new Image();
+                img.crossOrigin = "Anonymous";
+                img.onload = () => {
+                    AwesomeQR.create({
+                        //text: 'http://weixin.qq.com/r/RC8NFXHE0iytrTV293pW',
+                        text: info,
+                        size: 588,
+                        margin: 20,
+                        //maskedDots:true,
+                        dotScale: 0.4,
+                        binarize: true,
+                        backgroundImage: img,
+                        bindElement: 'qrcode'
+                    });
+                };
+                img.src = src;
+            });
+        }
+        var src1;
+        // 上传图片
+        var addWork = {
+            add: function (btn, figure_box) {
+                var figureBox = document.getElementById(figure_box); //获取显示图片的div元素 
+                var input = document.getElementById(btn); //获取选择图片的input元素 
+                //这边是判断本浏览器是否支持这个API。 
+                if (typeof FileReader === 'undefined') {
+                    alert("浏览器版本过低，请先更新您的浏览器~");
+                    input.setAttribute('disabled', 'disabled');
+                } else {
+                    input.addEventListener('change', readFile, false);
+
+                    //如果支持就监听改变事件，一旦改变了就运行readFile函数。 
+                }
+
+                function readFile() {
+                    var file = this.files[0]; //获取file对象 
+                    //判断file的类型是不是图片类型。 
+                    if (!/image\/\w+/.test(file.type)) {
+                        alert("请上传一张图片~");
+                        return false;
+                    }
+
+                    var reader = new FileReader(); //声明一个FileReader实例 
+                    reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
+                    //最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
+                    reader.onload = function (e) {
+                        // 创建一个新增的图片和文字input 
+                        var figure = document.createElement('img')
+                        figure.src = this.result
+                        figure.id = 'qrcode'
+                        figureBox.appendChild(figure)
+                        src1 = this.result
+                        console.log(src1)
+                    }
+                }
+            }
+        }
+        window.onload = function () {
+            $('#32154')
+            addWork.add('upload', 'look')
+            var info = document.getElementById('info')
+            var gc = document.getElementById('gc')
+            var info_txt;
+            gc.addEventListener('click', function () {
+                this.innerHTML='刷新'
+                info_txt = info.value
+                //如果没有添加背景图片
+                if(!src1){
+                    var look = document.getElementById('look')
+                    var img = document.createElement('img')
+                    img.id='qrcode'
+                    look.appendChild(img)
+                }
+                //添加了背景图片
+                g(src1, info_txt);
+            })
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="look"></div>
+    <div class="btn">导入背景图片</div>
+    <input type="file" id="upload">
+    <div class="btn" id="info_btn">输入二维码信息</div>
+    <input type="text" id="info">
+    <div class="btn">配置</div>
+    <div class="btn" id="gc">生成二维码</div>
+    <a class="btn" href="" id="save">导出</a>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        border-box: box-sizing;
+    }
+
+    .btn {
+        display: block;
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        background: #52b737;
+        color: #fff;
+        margin: 10px;
+        border-radius: 8px;
+    }
+
+    #look {
+        max-width: 500px;
+        max-height: 500px;
+        text-align: center;
+        transition: .5s;
+    }
+
+    #look img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+
+</html>
