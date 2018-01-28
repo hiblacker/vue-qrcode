@@ -53,10 +53,10 @@ let data = {
 };
 let methods = {
   changePage(current) {
-    console.log("当前轮播图序号为:" + current);
+    //console.log("当前轮播图序号为:" + current);
   },
   clickHandler(item, index) {
-    console.log(item, index);
+    //console.log(item, index);
   }
 };
 let computed = {};

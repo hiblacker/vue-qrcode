@@ -39,7 +39,8 @@ module.exports = {
       'page': resolve('src/page'),
       'style': resolve('src/assets/style'),
       'cube-ui': 'cube-ui/lib',
-      'img': resolve('src/assets/img')
+      'img': resolve('src/assets/img'),
+      'js': resolve('src/assets/js')
     }
   },
   module: {

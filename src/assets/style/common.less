@@ -81,13 +81,13 @@
   // input
   .input {
     border-bottom: 1px solid #e2e2e2;
-    width: 5.12rem;
-    margin: .44rem auto 0;
+    margin:.5rem 1rem;
     input {
       border: 0;
-      height: .51rem;
+      height: 1.5rem;
       width: 100%;
       outline: 0;
+      font-size: 14px;
     }
   }
 
@@ -157,7 +157,9 @@
   }
   .slide-enter,
   .slide-leave-active {
-    transform: translateX(100%);
+    transform: scale(0);
+    opacity: 0;
+    overflow: hidden;
   }
   
   :-moz-placeholder { /* Mozilla Firefox 4 to 18 */

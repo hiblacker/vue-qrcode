@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'style/common.less'
-import 'src/assets/js/rem'
+import 'js/rem'
+import 'js/require'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
